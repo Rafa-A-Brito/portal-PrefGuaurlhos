@@ -1,0 +1,177 @@
+.map-wrapper {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .map-loading,
+  .map-error {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    color: #4b5563;
+    font-weight: 500;
+  }
+  
+  .info-window-card {
+    max-width: 220px;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  .info-window-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .info-window-card h3 {
+    margin: 6px 0 4px 0;
+    font-size: 1rem;
+    color: #111827;
+  }
+  
+  .info-window-bairro {
+    font-size: 0.8rem;
+    color: #4b5563;
+    margin: 0 0 6px 0;
+  }
+  
+  .info-window-resumo {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.3;
+  }
+  
+  .badge-categoria {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .badge-categoria.arquitetonico {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .badge-categoria.imaterial {
+    background-color: #fce7f3;
+    color: #9d174d;
+  }
+  
+  .badge-categoria.natural {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  
+  .badge-categoria.documental {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .map-mockup-container {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    background-color: #e5e7eb;
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 16px 16px;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mockup-badge {
+    align-self: flex-start;
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  
+  .mockup-pin-card {
+    background-color: #ffffff;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .mockup-pin-card:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
+  }
+  
+  .mockup-pin-card.active {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+  }
+  
+  .mockup-pin-card h4 {
+    margin: 8px 0 4px 0;
+    font-size: 0.9rem;
+    color: #111827;
+  }
+  
+  .mockup-pin-card p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  .mockup-pin-card small {
+    font-size: 0.65rem;
+    color: #9ca3af;
+  }
+  
+  .mockup-empty {
+    color: #6b7280;
+    font-size: 0.875rem;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .mockup-infowindow {
+    position: absolute;
+    top: 60px;
+    right: 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    z-index: 10;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .mockup-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }

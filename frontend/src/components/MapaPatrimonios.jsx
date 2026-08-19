@@ -1,0 +1,147 @@
+import React, { useState, useCallback, useEffect } from 'react';
+import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from '@react-google-maps/api';
+import '../styles/mapa.css';
+
+const GUARULHOS_CENTER = { lat: -23.4542, lng: -46.5268 };
+const mapContainerStyle = { width: '100%', height: '500px', borderRadius: '8px' };
+
+export default function MapaPatrimonios({ patrimonios = [] }) {
+  const [selectedPatrimonio, setSelectedPatrimonio] = useState(null);
+  const [map, setMap] = useState(null);
+
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const isMockMode = import.meta.env.VITE_USE_MOCK_MAP === 'true' || !apiKey;
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: apiKey || '',
+    preventGoogleFontsLoading: true,
+  });
+
+  const onLoad = useCallback((mapInstance) => {
+    setMap(mapInstance);
+  }, []);
+
+  const onUnmount = useCallback(() => {
+    setMap(null);
+  }, []);
+
+  useEffect(() => {
+    if (!isMockMode && map && patrimonios.length > 0 && window.google) {
+      const bounds = new window.google.maps.LatLngBounds();
+      patrimonios.forEach((item) => {
+        bounds.extend({ lat: item.localizacao.lat, lng: item.localizacao.lng });
+      });
+      map.fitBounds(bounds);
+
+      if (patrimonios.length === 1) {
+        map.setZoom(15);
+      }
+    }
+  }, [map, patrimonios, isMockMode]);
+
+  if (isMockMode) {
+    return (
+      <div className="map-wrapper">
+        <div className="map-mockup-container">
+          <div className="mockup-badge">
+            ⚠️ Modo Desenvolvedor (Mockup Sem Custo de API)
+          </div>
+
+          <div className="mockup-grid">
+            {patrimonios.length === 0 ? (
+              <p className="mockup-empty">Nenhum patrimônio encontrado para os filtros selecionados.</p>
+            ) : (
+              patrimonios.map((item) => (
+                <div
+                  key={item.id}
+                  className={`mockup-pin-card ${selectedPatrimonio?.id === item.id ? 'active' : ''}`}
+                  onClick={() => setSelectedPatrimonio(item)}
+                >
+                  <span className={`badge-categoria ${item.categoria}`}>
+                    {item.categoria}
+                  </span>
+                  <h4>{item.nome}</h4>
+                  <p>📍 {item.bairro}</p>
+                  <small>Lat: {item.localizacao.lat} | Lng: {item.localizacao.lng}</small>
+                </div>
+              ))
+            )}
+          </div>
+
+          {selectedPatrimonio && (
+            <div className="mockup-infowindow">
+              <button
+                className="mockup-close-btn"
+                onClick={() => setSelectedPatrimonio(null)}
+              >
+                ✕
+              </button>
+              <div className="info-window-card">
+                <img
+                  src={selectedPatrimonio.imagemPrincipal}
+                  alt={selectedPatrimonio.nome}
+                  className="info-window-img"
+                />
+                <span className={`badge-categoria ${selectedPatrimonio.categoria}`}>
+                  {selectedPatrimonio.categoria}
+                </span>
+                <h3>{selectedPatrimonio.nome}</h3>
+                <p className="info-window-bairro">📍 {selectedPatrimonio.bairro}</p>
+                <p className="info-window-resumo">{selectedPatrimonio.resumo}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError) return <div className="map-error">Erro ao carregar a Google Maps API.</div>;
+  if (!isLoaded) return <div className="map-loading">Carregando mapa...</div>;
+
+  return (
+    <div className="map-wrapper">
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        center={GUARULHOS_CENTER}
+        zoom={13}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {patrimonios.map((item) => (
+          <MarkerF
+            key={item.id}
+            position={{ lat: item.localizacao.lat, lng: item.localizacao.lng }}
+            title={item.nome}
+            onClick={() => setSelectedPatrimonio(item)}
+          />
+        ))}
+
+        {selectedPatrimonio && (
+          <InfoWindowF
+            position={{
+              lat: selectedPatrimonio.localizacao.lat,
+              lng: selectedPatrimonio.localizacao.lng,
+            }}
+            onCloseClick={() => setSelectedPatrimonio(null)}
+          >
+            <div className="info-window-card">
+              <img
+                src={selectedPatrimonio.imagemPrincipal}
+                alt={selectedPatrimonio.nome}
+                className="info-window-img"
+              />
+              <span className={`badge-categoria ${selectedPatrimonio.categoria}`}>
+                {selectedPatrimonio.categoria}
+              </span>
+              <h3>{selectedPatrimonio.nome}</h3>
+              <p className="info-window-bairro">📍 {selectedPatrimonio.bairro}</p>
+              <p className="info-window-resumo">{selectedPatrimonio.resumo}</p>
+            </div>
+          </InfoWindowF>
+        )}
+      </GoogleMap>
+    </div>
+  );
+}
