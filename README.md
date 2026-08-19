@@ -1,10 +1,10 @@
 # 🏛️ Patrimônio Histórico de Guarulhos — Portal Cultural & Mapeamento
 
-![React](https://img.shields.io/badge/React-vers%C3%A3o%20mais%20recente-61DAFB?style=flat&logo=react&logoColor=black)
-![Google Maps API](https://img.shields.io/badge/Google%20Maps%20API-vers%C3%A3o%20mais%20recente-4285F4?style=flat&logo=googlemaps&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS-vers%C3%A3o%20mais%20recente-1572B6?style=flat&logo=css3&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-vers%C3%A3o%20mais%20recente-339933?style=flat&logo=nodedotjs&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-vers%C3%A3o%20mais%20recente-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat&logo=react&logoColor=white)
+![Google Maps API](https://img.shields.io/badge/Google%20Maps%20API-3.64-4285F4?style=flat&logo=googlemaps&logoColor=red)
+![CSS3](https://img.shields.io/badge/CSS-3-1572B6?style=flat&logo=css3&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-24%20LTS-339933?style=flat&logo=nodedotjs&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES2026-edd54a?style=flat&logo=javascript&logoColor=yellow)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat)
 
 Aplicação web interativa para o mapeamento, consulta e preservação da memória dos patrimônios históricos da cidade de Guarulhos. A plataforma permite a navegação por rotas culturais, visualização em mapa interativo via Google Maps, análise de dados estatísticos e mecanismos avançados de pesquisa e filtragem.
@@ -53,8 +53,8 @@ Ao reunir esse conteúdo em uma plataforma digital única, o projeto contribui p
 
 ### Frontend & Interface
 
-- **React.js (v18.x):** Biblioteca base para construção da interface baseada em componentes.
-- **JavaScript (ES6+) / HTML5 / CSS3:** Base da aplicação.
+- **React.js (19.2):** Biblioteca base para construção da interface baseada em componentes.
+- **JavaScript (ES2026) / HTML5 / CSS3:** Base da aplicação.
 - **CSS Puro (Arquitetura Modular):** Estilização sem frameworks externos, utilizando CSS Variables para temas e layouts flexíveis (Flexbox e CSS Grid).
 
 ### Bibliotecas e Dependências
@@ -101,7 +101,7 @@ Ao reunir esse conteúdo em uma plataforma digital única, o projeto contribui p
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [Node.js](https://nodejs.org/) 24.x (LTS) ou superior
 - Gerenciador de pacotes `npm` ou `yarn`
 - Chave de API do [Google Maps Platform](https://developers.google.com/maps)
 - Instância do banco de dados configurado (PostgreSQL/MongoDB)
