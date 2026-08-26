@@ -1,0 +1,222 @@
+.pg-inicio .hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: 48px 32px 40px;
+  color: #fff;
+}
+.pg-inicio .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 1, 45, 0.15) 0%,
+    rgba(10, 1, 45, 0.55) 55%,
+    rgba(10, 1, 45, 0.92) 100%
+  );
+}
+.pg-inicio .hero-inner {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.pg-inicio .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e7c177;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.pg-inicio .eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: #e7c177;
+}
+.pg-inicio .hero h1 {
+  font-size: clamp(30px, 4vw, 44px);
+  max-width: 620px;
+  line-height: 1.08;
+  color: #fff;
+}
+.pg-inicio .hero .lede {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 480px;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+.pg-inicio .searchbar {
+  margin-top: 28px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 6px 6px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 560px;
+  box-shadow: var(--shadow-plaque);
+}
+.pg-inicio .searchbar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: "Inter";
+  font-size: 14px;
+  color: var(--ink);
+  padding: 10px 0;
+}
+.pg-inicio .searchbar button {
+  background: linear-gradient(120deg, var(--blue), var(--indigo));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 11px 20px;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+.pg-inicio .searchbar button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.stats-row {
+  max-width: 1180px;
+  margin: -30px auto 0;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  padding: 0 32px;
+}
+@media (max-width: 780px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.stat-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-plaque);
+  border: 1px solid var(--line);
+  transition: transform 0.18s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+.stat-card .n {
+  font-family: "Fraunces", serif;
+  font-size: 26px;
+  color: var(--blue);
+}
+.stat-card .l {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+@keyframes ctaDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.map-cta {
+  max-width: 1180px;
+  margin: 56px auto 0;
+  padding: 0 32px;
+}
+.map-cta-inner {
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg,
+    var(--navy),
+    var(--blue) 70%,
+    var(--indigo)
+  );
+  background-size: 160% 160%;
+  animation: ctaDrift 16s ease infinite;
+  padding: 40px 36px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.map-cta-inner h2 {
+  font-size: 22px;
+  color: #fff;
+  max-width: 420px;
+}
+.map-cta-inner p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 8px;
+  max-width: 420px;
+}
+.map-cta-btn {
+  background: #fff;
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 24px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.map-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.destaques {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-head h2 {
+  font-size: 24px;
+}
+.section-head .sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  max-width: 480px;
+}
+.plaque-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}

@@ -1,0 +1,89 @@
+@keyframes navDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.navbar {
+  background: linear-gradient(
+    115deg,
+    var(--navy) 0%,
+    var(--blue) 55%,
+    var(--indigo) 115%
+  );
+  background-size: 180% 180%;
+  animation: navDrift 14s ease infinite;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 18px rgba(10, 1, 45, 0.18);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-text .b1 {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.brand-text .b2 {
+  font-family: "Fraunces", serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 6px;
+}
+.navbar-nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.18s ease;
+}
+.navbar-nav a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+.navbar-nav a:hover:not(.active) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
