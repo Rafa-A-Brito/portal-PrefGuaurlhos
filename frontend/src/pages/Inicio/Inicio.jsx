@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import PlaquetaCard from "../../features/mapa/components/PlaquetaCard";
-import patrimoniosMock from "../../mocks/patrimoniosMock.json";
 import hero from "../../assets/hero.png";
+import PlaquetaCard from "../../features/mapa/PlaquetaCard";
+import patrimoniosMock from "../../features/mocks/patrimoniosMock.json";
 
 export default function Inicio() {
   const navigate = useNavigate();

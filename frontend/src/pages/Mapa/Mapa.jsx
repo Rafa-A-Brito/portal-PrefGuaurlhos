@@ -1,9 +1,9 @@
-import { useState, useMemo } from "react";
-import MapaPatrimonios from "../../features/mapa/components/MapaPatrimonios";
-import FiltroBar from "../../features/mapa/components/FiltroBar";
-import ListaPatrimonios from "../../features/mapa/components/ListaPatrimonios";
-import PlaquetaCard from "../../features/mapa/components/PlaquetaCard";
-import patrimoniosMock from "../../mocks/patrimoniosMock.json";
+import { useMemo, useState } from "react";
+import FiltroBar from "../../features/mapa/FiltroBar";
+import ListaPatrimonios from "../../features/mapa/ListaPatrimonios";
+import MapaPatrimonios from "../../features/mapa/MapaPatrimonios";
+import PlaquetaCard from "../../features/mapa/PlaquetaCard";
+import patrimoniosMock from "../../features/mocks/patrimoniosMock.json";
 
 export default function Mapa() {
   const [filtro, setFiltro] = useState("todos");

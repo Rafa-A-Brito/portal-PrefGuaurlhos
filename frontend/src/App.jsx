@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./features/mapa/components/Navbar";
-import Inicio from "..//pages/Inicio/Inicio";
+import Navbar from "./components/Navbar/NavBar";
+import Inicio from "./pages/Inicio/Inicio";
 import Mapa from "./pages/Mapa/Mapa";
 
 export default function App() {
