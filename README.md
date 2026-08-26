@@ -182,14 +182,21 @@ A aplicação estará disponível em `http://localhost:3000`, consumindo a API e
 
 ```text
 patrimonio-guarulhos/
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # Componentes reutilizáveis de UI
-│   │   ├── pages/          # Páginas (Home, Detalhes, Dashboard)
-│   │   ├── services/       # Integração com API (axios)
-│   │   ├── styles/         # CSS modular / variáveis globais
-│   │   └── App.jsx
-│   └── package.json
+├── patrimonio-guarulhos/
+└── frontend/
+    └── src/
+        ├── assets/                 # Guarda mídias estáticas como imagens, ícones e vetores.
+        ├── components/             # Componentes globais e reutilizáveis por toda a aplicação (ex: Navbar).
+        ├── features/               # Módulos principais isolados por regra de negócio e domínio.
+        │   └── mapa/               # Funcionalidade do Mapa Interativo de Patrimônios.
+        │       ├── components/     # Componentes de interface exclusivos do mapa (Filtros, Cards, etc.).
+        │       ├── mocks/          # Dados simulados e arquivos JSON locais para testes do mapa.
+        │       └── styles/         # Arquivos de estilo CSS específicos das telas do mapa.
+        ├── pages/                  # Views principais associadas às rotas do sistema (ex: Inicio, Mapa).
+        │   ├── Inicio/             # Página inicial da aplicação.
+        │   └── Mapa/               # Página contêiner que carrega a feature de mapa.
+        ├── services/               # Configurações de comunicação com APIs externas e Axios.
+        └── styles/                 # Estilos globais, resets e variáveis de CSS compartilhadas.
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
