@@ -1,0 +1,57 @@
+.pg-mapa .page-hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 24px;
+}
+.pg-mapa .page-hero h1 {
+  font-size: clamp(26px, 3.4vw, 34px);
+}
+.pg-mapa .page-hero p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  max-width: 560px;
+}
+
+.pg-mapa-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px 72px;
+}
+
+.map-split {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+@media (max-width: 880px) {
+  .map-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-head h2 {
+  font-size: 24px;
+}
+.section-head .sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  max-width: 480px;
+}
+
+.plaque-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}

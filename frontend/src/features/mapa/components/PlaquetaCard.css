@@ -1,0 +1,120 @@
+.plaqueta {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-plaque);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.plaqueta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(10, 1, 45, 0.12);
+}
+
+.plaqueta .rivet {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(10, 1, 45, 0.18);
+  z-index: 2;
+}
+.plaqueta .rivet.tl {
+  top: 10px;
+  left: 10px;
+}
+.plaqueta .rivet.tr {
+  top: 10px;
+  right: 10px;
+}
+
+.plaqueta figure {
+  margin: 0;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+.plaqueta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.plaqueta:hover img {
+  transform: scale(1.05);
+}
+
+.plaqueta .cat-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.plaqueta .cat-badge.cat-arquitetonico {
+  background: #dce3f7;
+  color: #17298c;
+}
+.plaqueta .cat-badge.cat-imaterial {
+  background: #f6dde9;
+  color: #8c1257;
+}
+.plaqueta .cat-badge.cat-natural {
+  background: #dceedc;
+  color: #1f6b33;
+}
+.plaqueta .cat-badge.cat-documental {
+  background: #f5e7cc;
+  color: #7a5209;
+}
+
+.plaqueta-body {
+  padding: 14px 16px 16px;
+}
+.plaqueta-body .num {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--bronze-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.plaqueta-body h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.plaqueta-body .bairro {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.plaqueta-body .resumo {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
+.plaqueta-body .verlink {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.15s ease;
+}
+.plaqueta-body .verlink:hover {
+  color: var(--indigo);
+  gap: 8px;
+}

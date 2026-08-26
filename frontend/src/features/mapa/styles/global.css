@@ -1,0 +1,673 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap");
+
+/* ===== Paleta oficial ===================================
+   #0A012D  navy    -> navbar, footer, texto de destaque
+   #0F059F  blue    -> ações primárias, links, estado ativo
+   #3445AF  indigo  -> hover, gradiente secundário
+   #D9D9D9  gray    -> bordas e divisores neutros
+   ========================================================= */
+:root {
+  --navy: #0a012d;
+  --navy-soft: #160b47;
+  --blue: #0f059f;
+  --indigo: #3445af;
+  --gray: #d9d9d9;
+  --paper: #f6f4ee;
+  --bronze: #b3822e;
+  --bronze-dark: #7a5a1e;
+  --ink: #14122a;
+  --ink-soft: #5b5876;
+  --line: var(--gray);
+  --radius-card: 14px;
+  --shadow-plaque:
+    0 1px 0 rgba(10, 1, 45, 0.04), 0 8px 20px rgba(10, 1, 45, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    "Open Sans",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+button {
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@keyframes gradientDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes pulseDot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 193, 119, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(231, 193, 119, 0);
+  }
+}
+
+/* ============ LAYOUT BASE ============ */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.app-main {
+  flex: 1;
+  width: 100%;
+}
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--navy);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12.5px;
+}
+.app-footer p {
+  margin: 0;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+  background: linear-gradient(
+    115deg,
+    var(--navy) 0%,
+    var(--blue) 55%,
+    var(--indigo) 115%
+  );
+  background-size: 180% 180%;
+  animation: gradientDrift 14s ease infinite;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 18px rgba(10, 1, 45, 0.18);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-text .b1 {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.brand-text .b2 {
+  font-size: 15px;
+  font-weight: 700;
+}
+.navbar-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.navbar-nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+.navbar-nav a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+.navbar-nav a:hover:not(.active) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ============ HERO (Início) ============ */
+.hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: 48px 32px 40px;
+  color: #fff;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 1, 45, 0.15) 0%,
+    rgba(10, 1, 45, 0.55) 55%,
+    rgba(10, 1, 45, 0.92) 100%
+  );
+}
+.hero-inner {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e7c177;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: #e7c177;
+}
+.hero h1 {
+  font-size: clamp(30px, 4vw, 44px);
+  max-width: 620px;
+  line-height: 1.15;
+  color: #fff;
+}
+.hero .lede {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 480px;
+  margin-top: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.searchbar {
+  margin-top: 28px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 6px 6px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 560px;
+  box-shadow: var(--shadow-plaque);
+}
+.searchbar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: var(--ink);
+  padding: 10px 0;
+  font-family: inherit;
+}
+.searchbar button {
+  background: linear-gradient(120deg, var(--blue), var(--indigo));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 11px 20px;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+.searchbar button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ============ STATS ============ */
+.stats-row {
+  max-width: 1180px;
+  margin: -30px auto 0;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  padding: 0 32px;
+}
+@media (max-width: 780px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.stat-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-plaque);
+  border: 1px solid var(--line);
+  transition: transform 0.18s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+.stat-card .n {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--blue);
+}
+.stat-card .l {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+/* ============ CTA MAPA ============ */
+.map-cta {
+  max-width: 1180px;
+  margin: 56px auto 0;
+  padding: 0 32px;
+}
+.map-cta-inner {
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg,
+    var(--navy),
+    var(--blue) 70%,
+    var(--indigo)
+  );
+  background-size: 160% 160%;
+  animation: gradientDrift 16s ease infinite;
+  padding: 40px 36px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.map-cta-inner h2 {
+  font-size: 22px;
+  color: #fff;
+  max-width: 420px;
+}
+.map-cta-inner p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 8px;
+  max-width: 420px;
+  font-weight: 400;
+}
+.map-cta-btn {
+  background: #fff;
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 24px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.map-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ============ SEÇÃO / GRID PADRÃO ============ */
+.page-hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 24px;
+}
+.page-hero h1 {
+  font-size: clamp(26px, 3.4vw, 34px);
+}
+.page-hero p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  max-width: 560px;
+  font-weight: 400;
+}
+
+.destaques,
+.pg-mapa-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px 72px;
+}
+.destaques {
+  padding-top: 56px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-head h2 {
+  font-size: 24px;
+}
+.section-head .sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  max-width: 480px;
+  font-weight: 400;
+}
+
+.plaque-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+/* ============ FILTRO ============ */
+.filterbar {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-plaque);
+  padding: 16px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.filterbar .label {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.filter-pill {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all 0.15s ease;
+}
+.filter-pill.on {
+  background: linear-gradient(120deg, var(--navy), var(--blue));
+  color: #fff;
+  border-color: var(--navy);
+}
+.filter-pill:hover:not(.on) {
+  border-color: var(--indigo);
+  color: var(--indigo);
+}
+
+/* ============ MAPA + LISTA (página Mapa) ============ */
+.map-split {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+@media (max-width: 880px) {
+  .map-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.list-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  overflow: hidden;
+}
+.list-panel-head {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-panel-head h3 {
+  font-size: 15px;
+}
+.list-panel-head .count {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.list-scroll {
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.list-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.list-item:hover {
+  background: var(--paper);
+}
+.list-item.active {
+  background: #eef0fb;
+  border-color: var(--indigo);
+}
+.list-item .thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: none;
+  background: var(--gray);
+}
+.list-item .num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--bronze-dark);
+}
+.list-item h4 {
+  font-size: 14.5px;
+  margin: 2px 0 3px;
+  font-weight: 700;
+}
+.list-item .meta {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+/* ============ PLAQUETA (card padrão de patrimônio) ============ */
+.plaqueta {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-plaque);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.plaqueta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(10, 1, 45, 0.12);
+}
+.plaqueta .rivet {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(10, 1, 45, 0.18);
+  z-index: 2;
+}
+.plaqueta .rivet.tl {
+  top: 10px;
+  left: 10px;
+}
+.plaqueta .rivet.tr {
+  top: 10px;
+  right: 10px;
+}
+.plaqueta figure {
+  margin: 0;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  background: var(--gray);
+}
+.plaqueta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.plaqueta:hover img {
+  transform: scale(1.05);
+}
+.plaqueta .cat-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.plaqueta-body {
+  padding: 14px 16px 16px;
+}
+.plaqueta-body .num {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--bronze-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.plaqueta-body h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.plaqueta-body .bairro {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.plaqueta-body .resumo {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0 0 12px;
+  font-weight: 400;
+}
+.plaqueta-body .verlink {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.15s ease;
+}
+.plaqueta-body .verlink:hover {
+  color: var(--indigo);
+  gap: 8px;
+}
+
+.cat-badge.cat-arquitetonico {
+  background: #dce3f7;
+  color: #17298c;
+}
+.cat-badge.cat-imaterial {
+  background: #f6dde9;
+  color: #8c1257;
+}
+.cat-badge.cat-natural {
+  background: #dceedc;
+  color: #1f6b33;
+}
+.cat-badge.cat-documental {
+  background: #f5e7cc;
+  color: #7a5209;
+}
