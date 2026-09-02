@@ -1,67 +1,88 @@
-import { useMemo, useState } from "react";
+import { useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { MapIcon } from "@heroicons/react/24/outline";
 import FiltroBar from "../../features/mapa/FiltroBar";
-import ListaPatrimonios from "../../features/mapa/ListaPatrimonios";
-import MapaPatrimonios from "../../features/mapa/MapaPatrimonios";
 import PlaquetaCard from "../../features/mapa/PlaquetaCard";
-import patrimoniosMock from "../../features/mocks/patrimoniosMock.json";
+import { usePatrimoniosContext } from "../../context/PatrimoniosContext";
 
 export default function Mapa() {
-  const [filtro, setFiltro] = useState("todos");
-  const [selecionado, setSelecionado] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filtro = searchParams.get("categoria") || "todos";
+  const { patrimonios, carregando, setSelecionado } = usePatrimoniosContext();
 
-  const patrimonios = useMemo(
+  useEffect(() => {
+    // Ao sair da página, some com o destaque de seleção nos outros componentes.
+    return () => setSelecionado(null);
+  }, [setSelecionado]);
+
+  const filtrados = useMemo(
     () =>
       filtro === "todos"
-        ? patrimoniosMock
-        : patrimoniosMock.filter((p) => p.categoria === filtro),
-    [filtro],
+        ? patrimonios
+        : patrimonios.filter((p) => p.categoria === filtro),
+    [filtro, patrimonios],
   );
 
   const handleFiltro = (novo) => {
-    setFiltro(novo);
-    setSelecionado(null);
+    setSearchParams(novo === "todos" ? {} : { categoria: novo });
   };
 
   return (
     <div>
       <div className="page-hero">
-        <h1>Mapa interativo de patrimônios</h1>
+        <h1>Acervo de patrimônios</h1>
         <p>
           Explore os bens culturais, históricos e naturais cadastrados no
-          município. Clique em um pino ou na lista para ver o resumo.
+          município. Use o botão <strong>Mapa</strong> no canto da tela para
+          localizar cada um deles.
         </p>
+        <div className="page-hero-hint">
+          <MapIcon width={16} height={16} />
+          <span>
+            O mapa interativo agora é flutuante — acompanha você em qualquer
+            página.
+          </span>
+        </div>
       </div>
 
       <div className="pg-mapa-shell">
         <FiltroBar ativo={filtro} onChange={handleFiltro} />
 
-        <div className="map-split">
-          <MapaPatrimonios
-            patrimonios={patrimonios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
-          <ListaPatrimonios
-            patrimonios={patrimonios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
-        </div>
-
-        <div className="section-head" style={{ marginTop: 48 }}>
-          <div>
-            <h2>Todos os bens filtrados</h2>
-            <p className="sub">
-              Lista completa em formato de plaqueta, sincronizada com o mapa
-              acima.
-            </p>
+        {carregando ? (
+          <div className="skeleton-grid">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="skeleton-card" />
+            ))}
           </div>
-        </div>
-        <div className="plaque-grid">
-          {patrimonios.map((item) => (
-            <PlaquetaCard key={item.id} item={item} />
-          ))}
-        </div>
+        ) : filtrados.length === 0 ? (
+          <div className="empty-state">
+            Nenhum patrimônio encontrado para esse filtro.
+          </div>
+        ) : (
+          <>
+            <div className="section-head">
+              <div>
+                <h2>
+                  {filtrados.length}{" "}
+                  {filtrados.length === 1
+                    ? "bem encontrado"
+                    : "bens encontrados"}
+                </h2>
+                <p className="sub">
+                  Clique em qualquer card para destacá-lo também no mapa
+                  flutuante.
+                </p>
+              </div>
+            </div>
+            <div className="plaque-grid">
+              {filtrados.map((item) => (
+                <div key={item.id} onClick={() => setSelecionado(item)}>
+                  <PlaquetaCard item={item} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

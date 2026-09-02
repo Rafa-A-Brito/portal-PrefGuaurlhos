@@ -5,7 +5,7 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
-import "../mapa/styles/mapa.css";
+import "./styles/mapa.css";
 
 const GUARULHOS_CENTER = { lat: -23.4542, lng: -46.5268 };
 const mapContainerStyle = {
