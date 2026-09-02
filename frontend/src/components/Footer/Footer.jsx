@@ -1,16 +1,18 @@
-import {
-  EnvelopeIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import {
+  MapPinIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+  BuildingLibraryIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Footer() {
   return (
-    <footer className="app-footer">
+    <footer className="app-footer" id="contato">
       <div className="footer-grid">
         <div className="footer-col footer-brand">
           <div className="footer-brand-row">
+            <BuildingLibraryIcon width={24} height={24} />
             <div>
               <strong>Patrimônio Cultural</strong>
               <span>Prefeitura de Guarulhos</span>

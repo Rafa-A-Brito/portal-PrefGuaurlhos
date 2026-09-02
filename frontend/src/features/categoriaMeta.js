@@ -29,3 +29,14 @@ export const CATEGORIA_META = {
     Icon: DocumentTextIcon,
   },
 };
+
+/**
+ * Ordem de exibição das categorias nos filtros e chips (sem "todos",
+ * que cada componente já trata separadamente como opção fixa).
+ */
+export const CATEGORIAS_ORDEM = [
+  "arquitetonico",
+  "imaterial",
+  "natural",
+  "documental",
+];

@@ -1,18 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  useCallback,
-} from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import {
   listarPatrimonios,
   obterEstatisticas,
   listarCategoriasComContagem,
 } from "../services/fakeApi";
-
-const PatrimoniosContext = createContext(null);
+import { PatrimoniosContext } from "./patrimoniosContextInstance";
 
 export function PatrimoniosProvider({ children }) {
   const [patrimonios, setPatrimonios] = useState([]);
@@ -20,11 +12,19 @@ export function PatrimoniosProvider({ children }) {
   const [categorias, setCategorias] = useState({});
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-
-  // Estado de seleção compartilhado entre o mapa flutuante, a página de
-  // acervo e a lista — clicar num card em qualquer lugar destaca o mesmo
-  // item nos outros componentes que estiverem escutando.
   const [selecionado, setSelecionado] = useState(null);
+
+  // Estado do mapa flutuante fica aqui pra que o item "Maps" da Navbar
+  // (que não tem rota própria) consiga abri-lo de qualquer página.
+  const [mapaFlutuanteAberto, setMapaFlutuanteAberto] = useState(false);
+  const abrirMapaFlutuante = useCallback(
+    () => setMapaFlutuanteAberto(true),
+    [],
+  );
+  const fecharMapaFlutuante = useCallback(
+    () => setMapaFlutuanteAberto(false),
+    [],
+  );
 
   const carregar = useCallback(async () => {
     setCarregando(true);
@@ -38,7 +38,11 @@ export function PatrimoniosProvider({ children }) {
       setPatrimonios(listaResp);
       setEstatisticas(statsResp);
       setCategorias(catResp);
-    } catch (e) {
+    } catch (erroCapturado) {
+      console.error(
+        "[PatrimoniosProvider] falha ao carregar dados:",
+        erroCapturado,
+      );
       setErro("Não foi possível carregar os dados do patrimônio agora.");
     } finally {
       setCarregando(false);
@@ -46,6 +50,7 @@ export function PatrimoniosProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     carregar();
   }, [carregar]);
 
@@ -59,6 +64,10 @@ export function PatrimoniosProvider({ children }) {
       recarregar: carregar,
       selecionado,
       setSelecionado,
+      mapaFlutuanteAberto,
+      abrirMapaFlutuante,
+      fecharMapaFlutuante,
+      setMapaFlutuanteAberto,
     }),
     [
       patrimonios,
@@ -68,6 +77,9 @@ export function PatrimoniosProvider({ children }) {
       erro,
       carregar,
       selecionado,
+      mapaFlutuanteAberto,
+      abrirMapaFlutuante,
+      fecharMapaFlutuante,
     ],
   );
 
@@ -76,14 +88,4 @@ export function PatrimoniosProvider({ children }) {
       {children}
     </PatrimoniosContext.Provider>
   );
-}
-
-export function usePatrimoniosContext() {
-  const ctx = useContext(PatrimoniosContext);
-  if (!ctx) {
-    throw new Error(
-      "usePatrimoniosContext deve ser usado dentro de <PatrimoniosProvider>",
-    );
-  }
-  return ctx;
 }

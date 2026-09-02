@@ -7,20 +7,26 @@ import {
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/solid";
 import MapaPatrimonios from "./MapaPatrimonios";
-import { usePatrimoniosContext } from "../../../context/PatrimoniosContext";
+import { usePatrimoniosContext } from "../../hooks/usePatrimoniosContext";
 
 export default function FloatingMap() {
-  const [aberto, setAberto] = useState(false);
   const [minimizado, setMinimizado] = useState(false);
-  const { patrimonios, selecionado, setSelecionado, carregando } =
-    usePatrimoniosContext();
+  const {
+    patrimonios,
+    selecionado,
+    setSelecionado,
+    carregando,
+    mapaFlutuanteAberto,
+    abrirMapaFlutuante,
+    fecharMapaFlutuante,
+  } = usePatrimoniosContext();
 
-  if (!aberto) {
+  if (!mapaFlutuanteAberto) {
     return (
       <button
         className="floating-map-fab"
         onClick={() => {
-          setAberto(true);
+          abrirMapaFlutuante();
           setMinimizado(false);
         }}
         aria-label="Abrir mapa interativo de patrimônios"
@@ -47,7 +53,7 @@ export default function FloatingMap() {
             to="/mapa"
             className="fmh-btn"
             title="Abrir acervo completo"
-            onClick={() => setAberto(false)}
+            onClick={fecharMapaFlutuante}
           >
             <ArrowTopRightOnSquareIcon width={15} height={15} />
           </Link>
@@ -60,7 +66,7 @@ export default function FloatingMap() {
           </button>
           <button
             className="fmh-btn"
-            onClick={() => setAberto(false)}
+            onClick={fecharMapaFlutuante}
             title="Fechar"
           >
             <XMarkIcon width={15} height={15} />

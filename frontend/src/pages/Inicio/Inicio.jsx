@@ -10,9 +10,9 @@ import {
   SparklesIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
-import PlaquetaCard from "../../features/mapa/components/PlaquetaCard";
-import { usePatrimoniosContext } from "../../context/PatrimoniosContext";
-import hero from "../../assets/hero.png";
+import PlaquetaCard from "../../features/mapa/PlaquetaCard";
+import { usePatrimoniosContext } from "../../hooks/usePatrimoniosContext";
+import BACKGROUND_IMAGE from "../../assets/back_image.png";
 
 const CAT_LABEL = {
   arquitetonico: "Arquitetônico",
@@ -27,14 +27,20 @@ export default function Inicio() {
     usePatrimoniosContext();
   const destaques = patrimonios.slice(0, 4);
 
-  const irParaAcervo = (categoria) => {
-    navigate(categoria ? `/mapa?categoria=${categoria}` : "/mapa");
+  const irParaMapa = () => navigate("/mapa");
+  const irParaPatrimonios = (categoria) => {
+    navigate(
+      categoria ? `/patrimonios?categoria=${categoria}` : "/patrimonios",
+    );
   };
 
   return (
     <div>
       {/* ===== HERO ===== */}
-      <section className="hero" style={{ backgroundImage: `url(${hero})` }}>
+      <section
+        className="hero"
+        style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+      >
         <div className="hero-inner">
           <span className="eyebrow">Preserve a nossa história</span>
           <h1>Conheça e valorize o patrimônio de Guarulhos</h1>
@@ -51,7 +57,7 @@ export default function Inicio() {
               className="searchbar-icon"
             />
             <input type="text" placeholder="Busque por nome, bairro ou CEP" />
-            <button onClick={() => irParaAcervo()}>Buscar</button>
+            <button onClick={() => irParaPatrimonios()}>Buscar</button>
           </div>
         </div>
       </section>
@@ -97,7 +103,7 @@ export default function Inicio() {
       </div>
 
       {/* ===== SOBRE O PROJETO ===== */}
-      <section className="sobre">
+      <section className="sobre" id="sobre">
         <div className="sobre-inner">
           <div className="section-head">
             <div>
@@ -152,7 +158,7 @@ export default function Inicio() {
             <button
               key={valor}
               className={`categoria-chip cat-${valor}`}
-              onClick={() => irParaAcervo(valor)}
+              onClick={() => irParaPatrimonios(valor)}
             >
               <span className="chip-label">{label}</span>
               <span className="chip-count">{categorias[valor] ?? 0}</span>
@@ -171,7 +177,7 @@ export default function Inicio() {
               pelo acervo completo de Guarulhos.
             </p>
           </div>
-          <button className="map-cta-btn" onClick={() => irParaAcervo()}>
+          <button className="map-cta-btn" onClick={() => irParaMapa()}>
             <MapIcon width={18} height={18} /> Abrir o acervo
           </button>
         </div>

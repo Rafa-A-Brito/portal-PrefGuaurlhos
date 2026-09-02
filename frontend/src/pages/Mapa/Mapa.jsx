@@ -1,48 +1,32 @@
-import { useMemo, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { MapIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 import FiltroBar from "../../features/mapa/FiltroBar";
-import PlaquetaCard from "../../features/mapa/PlaquetaCard";
-import { usePatrimoniosContext } from "../../context/PatrimoniosContext";
+import MapaPatrimonios from "../../features/mapa/MapaPatrimonios";
+import ListaPatrimonios from "../../features/mapa/ListaPatrimonios";
+import { usePatrimoniosContext } from "../../hooks/usePatrimoniosContext";
 
 export default function Mapa() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const filtro = searchParams.get("categoria") || "todos";
-  const { patrimonios, carregando, setSelecionado } = usePatrimoniosContext();
+  const [filtro, setFiltro] = useState("todos");
+  const { patrimonios, carregando, selecionado, setSelecionado } =
+    usePatrimoniosContext();
 
-  useEffect(() => {
-    // Ao sair da página, some com o destaque de seleção nos outros componentes.
-    return () => setSelecionado(null);
-  }, [setSelecionado]);
-
-  const filtrados = useMemo(
-    () =>
-      filtro === "todos"
-        ? patrimonios
-        : patrimonios.filter((p) => p.categoria === filtro),
-    [filtro, patrimonios],
-  );
+  const filtrados =
+    filtro === "todos"
+      ? patrimonios
+      : patrimonios.filter((p) => p.categoria === filtro);
 
   const handleFiltro = (novo) => {
-    setSearchParams(novo === "todos" ? {} : { categoria: novo });
+    setFiltro(novo);
+    setSelecionado(null);
   };
 
   return (
     <div>
       <div className="page-hero">
-        <h1>Acervo de patrimônios</h1>
+        <h1>Mapa interativo</h1>
         <p>
-          Explore os bens culturais, históricos e naturais cadastrados no
-          município. Use o botão <strong>Mapa</strong> no canto da tela para
-          localizar cada um deles.
+          Veja no mapa onde cada patrimônio está localizado. Clique num pino ou
+          na lista para ver o resumo.
         </p>
-        <div className="page-hero-hint">
-          <MapIcon width={16} height={16} />
-          <span>
-            O mapa interativo agora é flutuante — acompanha você em qualquer
-            página.
-          </span>
-        </div>
       </div>
 
       <div className="pg-mapa-shell">
@@ -50,38 +34,23 @@ export default function Mapa() {
 
         {carregando ? (
           <div className="skeleton-grid">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3].map((i) => (
               <div key={i} className="skeleton-card" />
             ))}
           </div>
-        ) : filtrados.length === 0 ? (
-          <div className="empty-state">
-            Nenhum patrimônio encontrado para esse filtro.
-          </div>
         ) : (
-          <>
-            <div className="section-head">
-              <div>
-                <h2>
-                  {filtrados.length}{" "}
-                  {filtrados.length === 1
-                    ? "bem encontrado"
-                    : "bens encontrados"}
-                </h2>
-                <p className="sub">
-                  Clique em qualquer card para destacá-lo também no mapa
-                  flutuante.
-                </p>
-              </div>
-            </div>
-            <div className="plaque-grid">
-              {filtrados.map((item) => (
-                <div key={item.id} onClick={() => setSelecionado(item)}>
-                  <PlaquetaCard item={item} />
-                </div>
-              ))}
-            </div>
-          </>
+          <div className="map-split">
+            <MapaPatrimonios
+              patrimonios={filtrados}
+              selecionado={selecionado}
+              onSelecionar={setSelecionado}
+            />
+            <ListaPatrimonios
+              patrimonios={filtrados}
+              selecionado={selecionado}
+              onSelecionar={setSelecionado}
+            />
+          </div>
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
-import "./styles/mapa.css";
+import BACKGROUND_IMAGE from "../../assets/back_image.png";
 
 const GUARULHOS_CENTER = { lat: -23.4542, lng: -46.5268 };
 const mapContainerStyle = {
@@ -13,9 +13,6 @@ const mapContainerStyle = {
   height: "500px",
   borderRadius: "8px",
 };
-
-const FALLBACK_IMG =
-  "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23D9D9D9'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='16' fill='%235B5876' text-anchor='middle' dominant-baseline='middle'%3ESem imagem%3C/text%3E%3C/svg%3E";
 
 export default function MapaPatrimonios({
   patrimonios = [],
@@ -109,7 +106,7 @@ export default function MapaPatrimonios({
                   alt={selectedPatrimonio.nome}
                   className="info-window-img"
                   onError={(e) => {
-                    e.currentTarget.src = FALLBACK_IMG;
+                    e.currentTarget.src = { BACKGROUND_IMAGE };
                   }}
                 />
                 <span
@@ -168,7 +165,7 @@ export default function MapaPatrimonios({
                 alt={selectedPatrimonio.nome}
                 className="info-window-img"
                 onError={(e) => {
-                  e.currentTarget.src = FALLBACK_IMG;
+                  e.currentTarget.src = { FALLBACK_IMG };
                 }}
               />
               <span
