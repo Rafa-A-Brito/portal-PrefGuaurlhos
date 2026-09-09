@@ -5,11 +5,9 @@ import {
   XMarkIcon,
   BuildingLibraryIcon,
 } from "@heroicons/react/24/outline";
-import { usePatrimoniosContext } from "../../hooks/usePatrimoniosContext";
 
 export default function Navbar() {
   const [menuAberto, setMenuAberto] = useState(false);
-  const { abrirMapaFlutuante } = usePatrimoniosContext();
 
   const linkClass = ({ isActive }) => (isActive ? "active" : "");
   const fechar = () => setMenuAberto(false);
@@ -19,23 +17,15 @@ export default function Navbar() {
       <NavLink to="/" end className={linkClass} onClick={fechar}>
         Início
       </NavLink>
-      {/* "Maps" não é uma página própria — abre o mapa flutuante global */}
-      <button
-        type="button"
-        className="navbar-link-btn"
-        onClick={() => {
-          abrirMapaFlutuante();
-          fechar();
-        }}
-      >
-        Maps
-      </button>
       <NavLink to="/mapa" className={linkClass} onClick={fechar}>
+        Mapas
+      </NavLink>
+      <NavLink to="/patrimonios" className={linkClass} onClick={fechar}>
         Patrimônios
       </NavLink>
-      <a href="/#sobre" onClick={fechar}>
-        Conheça mais
-      </a>
+      <NavLink to="/conheca-mais" className={linkClass} onClick={fechar}>
+        Conheça +
+      </NavLink>
       <a href="/#contato" onClick={fechar}>
         Contato
       </a>

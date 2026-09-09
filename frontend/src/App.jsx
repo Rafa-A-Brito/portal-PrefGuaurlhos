@@ -1,12 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import { PatrimoniosProvider } from "./context/PatrimoniosContext";
-import FloatingMap from "./features/mapa/FloatingMap";
-import Navbar from "./components/Navbar/NavBar";
-import ConhecaMais from "./pages/ConhecaMais/ConhecaMais";
 import Inicio from "./pages/Inicio/Inicio";
 import Mapa from "./pages/Mapa/Mapa";
 import Patrimonios from "./pages/Patrimonios/Patrimonios";
+import ConhecaMais from "./pages/ConhecaMais/ConhecaMais";
+import { PatrimoniosProvider } from "./context/PatrimoniosContext";
 
 export default function App() {
   return (
@@ -23,7 +22,6 @@ export default function App() {
             </Routes>
           </main>
           <Footer />
-          <FloatingMap />
         </div>
       </BrowserRouter>
     </PatrimoniosProvider>

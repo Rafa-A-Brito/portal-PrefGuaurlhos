@@ -12,19 +12,10 @@ export function PatrimoniosProvider({ children }) {
   const [categorias, setCategorias] = useState({});
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-  const [selecionado, setSelecionado] = useState(null);
 
-  // Estado do mapa flutuante fica aqui pra que o item "Maps" da Navbar
-  // (que não tem rota própria) consiga abri-lo de qualquer página.
-  const [mapaFlutuanteAberto, setMapaFlutuanteAberto] = useState(false);
-  const abrirMapaFlutuante = useCallback(
-    () => setMapaFlutuanteAberto(true),
-    [],
-  );
-  const fecharMapaFlutuante = useCallback(
-    () => setMapaFlutuanteAberto(false),
-    [],
-  );
+  // Item selecionado — usado pela página de Mapa e pela lista de Patrimônios
+  // pra destacar o mesmo item em componentes diferentes.
+  const [selecionado, setSelecionado] = useState(null);
 
   const carregar = useCallback(async () => {
     setCarregando(true);
@@ -64,10 +55,6 @@ export function PatrimoniosProvider({ children }) {
       recarregar: carregar,
       selecionado,
       setSelecionado,
-      mapaFlutuanteAberto,
-      abrirMapaFlutuante,
-      fecharMapaFlutuante,
-      setMapaFlutuanteAberto,
     }),
     [
       patrimonios,
@@ -77,9 +64,6 @@ export function PatrimoniosProvider({ children }) {
       erro,
       carregar,
       selecionado,
-      mapaFlutuanteAberto,
-      abrirMapaFlutuante,
-      fecharMapaFlutuante,
     ],
   );
 
