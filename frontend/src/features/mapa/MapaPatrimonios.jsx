@@ -5,25 +5,48 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
-import "../mapa/styles/mapa.css";
+import "../../styles/global.css";
 
 const GUARULHOS_CENTER = { lat: -23.4542, lng: -46.5268 };
 const mapContainerStyle = {
   width: "100%",
-  height: "500px",
-  borderRadius: "8px",
+  height: "100%",
+  minHeight: "460px",
+  borderRadius: "14px",
 };
 
 const FALLBACK_IMG =
   "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23D9D9D9'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='16' fill='%235B5876' text-anchor='middle' dominant-baseline='middle'%3ESem imagem%3C/text%3E%3C/svg%3E";
+
+// Cor do pino no mapa real, por categoria — espelha as cores dos badges/chips.
+const COR_POR_CATEGORIA = {
+  arquitetonico: "#17298C",
+  imaterial: "#8C1257",
+  natural: "#1F6B33",
+  documental: "#7A5209",
+};
+
+function pinIcon(categoria) {
+  const cor = COR_POR_CATEGORIA[categoria] || "#0F059F";
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">
+      <path d="M15 0C6.7 0 0 6.7 0 15c0 11 15 25 15 25s15-14 15-25C30 6.7 23.3 0 15 0z" fill="${cor}"/>
+      <circle cx="15" cy="15" r="6" fill="#fff"/>
+    </svg>`;
+  return {
+    url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+    scaledSize:
+      typeof window !== "undefined" && window.google
+        ? new window.google.maps.Size(30, 40)
+        : undefined,
+  };
+}
 
 export default function MapaPatrimonios({
   patrimonios = [],
   selecionado: selecionadoProp,
   onSelecionar,
 }) {
-  // Continua funcionando "sozinho" (estado interno) se ninguém controlar de fora,
-  // e passa a ser controlado quando a página (Mapa.jsx) passa selecionado/onSelecionar.
   const [internalSelecionado, setInternalSelecionado] = useState(null);
   const selectedPatrimonio = onSelecionar
     ? selecionadoProp
@@ -56,13 +79,11 @@ export default function MapaPatrimonios({
         bounds.extend({ lat: item.localizacao.lat, lng: item.localizacao.lng });
       });
       map.fitBounds(bounds);
-
-      if (patrimonios.length === 1) {
-        map.setZoom(15);
-      }
+      if (patrimonios.length === 1) map.setZoom(15);
     }
   }, [map, patrimonios, isMockMode]);
 
+  // ===== MODO MOCK — sem chave de API configurada =====
   if (isMockMode) {
     return (
       <div className="map-wrapper">
@@ -94,62 +115,36 @@ export default function MapaPatrimonios({
               ))
             )}
           </div>
-
-          {selectedPatrimonio && (
-            <div className="mockup-infowindow">
-              <button
-                className="mockup-close-btn"
-                onClick={() => setSelectedPatrimonio(null)}
-              >
-                ✕
-              </button>
-              <div className="info-window-card">
-                <img
-                  src={selectedPatrimonio.imagemPrincipal}
-                  alt={selectedPatrimonio.nome}
-                  className="info-window-img"
-                  onError={(e) => {
-                    e.currentTarget.src = FALLBACK_IMG;
-                  }}
-                />
-                <span
-                  className={`badge-categoria ${selectedPatrimonio.categoria}`}
-                >
-                  {selectedPatrimonio.categoria}
-                </span>
-                <h3>{selectedPatrimonio.nome}</h3>
-                <p className="info-window-bairro">
-                  📍 {selectedPatrimonio.bairro}
-                </p>
-                <p className="info-window-resumo">
-                  {selectedPatrimonio.resumo}
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     );
   }
 
+  // ===== MODO REAL — Google Maps API =====
   if (loadError)
     return <div className="map-error">Erro ao carregar a Google Maps API.</div>;
   if (!isLoaded) return <div className="map-loading">Carregando mapa...</div>;
 
   return (
-    <div className="map-wrapper">
+    <div className="map-wrapper" style={{ height: "100%" }}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={GUARULHOS_CENTER}
         zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        options={{
+          streetViewControl: false,
+          mapTypeControl: false,
+          fullscreenControl: false,
+        }}
       >
         {patrimonios.map((item) => (
           <MarkerF
             key={item.id}
             position={{ lat: item.localizacao.lat, lng: item.localizacao.lng }}
             title={item.nome}
+            icon={pinIcon(item.categoria)}
             onClick={() => setSelectedPatrimonio(item)}
           />
         ))}

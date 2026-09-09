@@ -1,38 +1,29 @@
 [
-    {
-      "id": "1",
-      "nome": "Capela de Nossa Senhora do Bonsucesso",
-      "categoria": "arquitetonico",
-      "bairro": "Bonsucesso",
-      "resumo": "Construção histórica datada de meados do século XVIII, ponto central da tradicional Festa de Bonsucesso.",
-      "imagemPrincipal": "https://images.unsplash.com/photo-1548625361-1808269e38f1?q=80&w=400&auto=format&fit=crop",
-      "localizacao": {
-        "lat": -23.4182,
-        "lng": -46.4111
-      }
-    },
-    {
-      "id": "2",
-      "nome": "Bosque Maia",
-      "categoria": "natural",
-      "bairro": "Jardim Maia",
-      "resumo": "Maior parque urbano de Guarulhos, considerado o pulmão verde do município e espaço de convivência.",
-      "imagemPrincipal": "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?q=80&w=400&auto=format&fit=crop",
-      "localizacao": {
-        "lat": -23.4565,
-        "lng": -46.5292
-      }
-    },
-    {
-      "id": "3",
-      "nome": "Festa de Bonsucesso",
-      "categoria": "imaterial",
-      "bairro": "Bonsucesso",
-      "resumo": "Uma das manifestações religiosas e culturais mais antigas da Região Metropolitana de São Paulo.",
-      "imagemPrincipal": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop",
-      "localizacao": {
-        "lat": -23.4190,
-        "lng": -46.4105
-      }
-    }
-  ]
+  {
+    "id": "1",
+    "nome": "Capela de Nossa Senhora do Bonsucesso",
+    "categoria": "arquitetonico",
+    "bairro": "Bonsucesso",
+    "resumo": "Construção histórica datada de meados do século XVIII, ponto central da tradicional Festa de Bonsucesso.",
+    "imagemPrincipal": "src/assets/sra_bonsucesso.png",
+    "localizacao": { "lat": -23.4182, "lng": -46.4111 }
+  },
+  {
+    "id": "2",
+    "nome": "Bosque Maia",
+    "categoria": "natural",
+    "bairro": "Jardim Maia",
+    "resumo": "Maior parque urbano de Guarulhos, considerado o pulmão verde do município e espaço de convivência.",
+    "imagemPrincipal": "/src/assets/bosque_maia.jpg",
+    "localizacao": { "lat": -23.4565, "lng": -46.5292 }
+  },
+  {
+    "id": "3",
+    "nome": "Festa de Bonsucesso",
+    "categoria": "imaterial",
+    "bairro": "Bonsucesso",
+    "resumo": "Uma das manifestações religiosas e culturais mais antigas da Região Metropolitana de São Paulo.",
+    "imagemPrincipal": "/src/assets/festa_bonsucesso.jpg",
+    "localizacao": { "lat": -23.419, "lng": -46.4105 }
+  }
+]

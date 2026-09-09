@@ -1,5 +1,4 @@
-const FALLBACK_IMG =
-  "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='100%25' height='100%25' fill='%23D9D9D9'/%3E%3C/svg%3E";
+import BACKGROUND_IMAGE from "../../assets/back_image.png";
 
 export default function ListaPatrimonios({
   patrimonios,
@@ -29,7 +28,7 @@ export default function ListaPatrimonios({
               src={item.imagemPrincipal}
               alt={item.nome}
               onError={(e) => {
-                e.currentTarget.src = FALLBACK_IMG;
+                e.currentTarget.src = BACKGROUND_IMAGE;
               }}
             />
             <div>
