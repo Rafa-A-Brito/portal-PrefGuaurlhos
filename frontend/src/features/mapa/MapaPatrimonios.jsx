@@ -20,14 +20,14 @@ const FALLBACK_IMG =
 
 // Cor do pino no mapa real, por categoria — espelha as cores dos badges/chips.
 const COR_POR_CATEGORIA = {
-  arquitetonico: "#17298C",
-  imaterial: "#8C1257",
-  natural: "#1F6B33",
-  documental: "#7A5209",
+  arquitetonico: "#1D6E96",
+  imaterial: "#92590A",
+  natural: "#146A2E",
+  documental: "#56661F",
 };
 
 function pinIcon(categoria) {
-  const cor = COR_POR_CATEGORIA[categoria] || "#0F059F";
+  const cor = COR_POR_CATEGORIA[categoria] || "#2B255C";
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">
       <path d="M15 0C6.7 0 0 6.7 0 15c0 11 15 25 15 25s15-14 15-25C30 6.7 23.3 0 15 0z" fill="${cor}"/>
@@ -110,6 +110,9 @@ export default function MapaPatrimonios({
                   </span>
                   <h4>{item.nome}</h4>
                   <p>📍 {item.bairro}</p>
+                  {item.cep && (
+                    <p className="mockup-pin-cep">CEP {item.cep}</p>
+                  )}
                   <small>Nº {String(item.id).padStart(3, "0")}</small>
                 </div>
               ))
@@ -175,6 +178,14 @@ export default function MapaPatrimonios({
               <p className="info-window-bairro">
                 📍 {selectedPatrimonio.bairro}
               </p>
+              {selectedPatrimonio.endereco && (
+                <p className="info-window-endereco">
+                  {selectedPatrimonio.endereco}
+                  {selectedPatrimonio.cep
+                    ? ` – CEP ${selectedPatrimonio.cep}`
+                    : ""}
+                </p>
+              )}
               <p className="info-window-resumo">{selectedPatrimonio.resumo}</p>
             </div>
           </InfoWindowF>

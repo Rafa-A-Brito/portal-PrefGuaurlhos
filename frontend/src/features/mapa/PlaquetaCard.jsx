@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MapPinIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { CATEGORIA_META } from "../categoriaMeta";
 
@@ -32,11 +33,16 @@ export default function PlaquetaCard({ item }) {
           <MapPinIcon className="inline-icon" aria-hidden="true" />
           {item.bairro}
         </div>
+        {item.cep && <span className="cep">CEP {item.cep}</span>}
         <p className="resumo">{item.resumo}</p>
-        <a className="verlink" href="#">
+        <Link
+          className="verlink"
+          to={`/patrimonios/${item.id}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           Ver detalhes{" "}
           <ArrowRightIcon className="inline-icon-sm" aria-hidden="true" />
-        </a>
+        </Link>
       </div>
     </article>
   );

@@ -14,7 +14,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error('[API Error]:', error.response?.data || error.message);
-    return Promise.ASAreject(error);
+    return Promise.reject(error);
   }
 );
 
