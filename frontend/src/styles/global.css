@@ -306,7 +306,7 @@ input:focus-visible {
   align-items: flex-end;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 25%;
   padding: 40px clamp(16px, 4vw, 32px) 40px;
   color: #fff;
   overflow: hidden;

@@ -1,6 +1,6 @@
 import ESTACAO_IMG from "../../assets/sra_bonsucesso.png";
 import IGREJA_IMG from "../../assets/festa_bonsucesso.jpg";
-import HOSPITAL_IMG from "../../assets/back_image.png";
+import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
 
 /**
  * Conteúdo específico do Hero da Home — não faz parte do catálogo de

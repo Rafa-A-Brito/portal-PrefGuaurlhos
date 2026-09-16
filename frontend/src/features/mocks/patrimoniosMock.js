@@ -1,7 +1,7 @@
 import ESTACAO_IMG from "../../assets/sra_bonsucesso.png";
 import BOSQUE_IMG from "../../assets/bosque_maia.jpg";
 import IGREJA_IMG from "../../assets/festa_bonsucesso.jpg";
-import HOSPITAL_IMG from "../../assets/back_image.png";
+import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
 
 /**
  * Catálogo único de patrimônios mockados — fonte de dados compartilhada

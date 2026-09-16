@@ -16,7 +16,7 @@ import {
 import { heroDestaqueMock } from "../../features/mocks/destaquesMock";
 import { CATEGORIA_META, CATEGORIAS_ORDEM } from "../../features/categoriaMeta";
 import { usePatrimoniosContext } from "../../hooks/usePatrimoniosContext";
-import BACKGROUND_IMAGE from "../../assets/back_image.png";
+import BACKGROUND_IMAGE from "../../assets/viaduto_cid_guarulhos.png";
 
 const CARD_SCROLL_STEP = 236; // largura do card (220px) + gap (16px)
 const QTD_DESTAQUES = 6;
@@ -30,7 +30,9 @@ export default function Inicio() {
 
   const irParaPatrimonios = (termo) => {
     navigate(
-      termo ? `/patrimonios?busca=${encodeURIComponent(termo)}` : "/patrimonios",
+      termo
+        ? `/patrimonios?busca=${encodeURIComponent(termo)}`
+        : "/patrimonios",
     );
   };
 
@@ -55,7 +57,9 @@ export default function Inicio() {
       {/* ===== HERO ===== */}
       <section
         className="hero hero-v2"
-        style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+        style={{
+          backgroundImage: `url(${BACKGROUND_IMAGE})`,
+        }}
       >
         <div className="hero-inner hero-inner-v2">
           <div className="hero-copy">
@@ -65,9 +69,8 @@ export default function Inicio() {
               patrimônio de <span className="hl">Guarulhos</span>
             </h1>
             <p className="lede">
-              Explore os bens culturais, históricos e naturais que fazem
-              parte da nossa identidade. Preserve a nossa história para o
-              futuro.
+              Explore os bens culturais, históricos e naturais que fazem parte
+              da nossa identidade. Preserve a nossa história para o futuro.
             </p>
 
             <form className="searchbar" onSubmit={buscar}>
@@ -150,7 +153,9 @@ export default function Inicio() {
             </span>
             <div>
               <strong>Participe</strong>
-              <span className="feature-item-sub">Contribua com informações</span>
+              <span className="feature-item-sub">
+                Contribua com informações
+              </span>
             </div>
           </div>
           <div className="feature-item">
@@ -159,7 +164,9 @@ export default function Inicio() {
             </span>
             <div>
               <strong>Preserve</strong>
-              <span className="feature-item-sub">Ajude a manter viva nossa cultura</span>
+              <span className="feature-item-sub">
+                Ajude a manter viva nossa cultura
+              </span>
             </div>
           </div>
         </div>
