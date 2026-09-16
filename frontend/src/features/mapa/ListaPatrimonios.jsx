@@ -1,4 +1,4 @@
-import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
+import BACKGROUND_IMAGE from "../../assets/back_image.png";
 
 export default function ListaPatrimonios({
   patrimonios,
@@ -28,8 +28,7 @@ export default function ListaPatrimonios({
               src={item.imagemPrincipal}
               alt={item.nome}
               onError={(e) => {
-                e.currentTarget.src = import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
-;
+                e.currentTarget.src = BACKGROUND_IMAGE;
               }}
             />
             <div>

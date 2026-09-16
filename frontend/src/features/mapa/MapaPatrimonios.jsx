@@ -71,15 +71,26 @@ export default function MapaPatrimonios({
   const onUnmount = useCallback(() => {
     setMap(null);
   }, []);
-
   useEffect(() => {
     if (!isMockMode && map && patrimonios.length > 0 && window.google) {
       const bounds = new window.google.maps.LatLngBounds();
+      let contemPontosValidos = false;
+
       patrimonios.forEach((item) => {
-        bounds.extend({ lat: item.localizacao.lat, lng: item.localizacao.lng });
+        // Valida se a localização e as coordenadas realmente existem antes de aplicar
+        if (item.localizacao?.lat && item.localizacao?.lng) {
+          bounds.extend({
+            lat: item.localizacao.lat,
+            lng: item.localizacao.lng,
+          });
+          contemPontosValidos = true;
+        }
       });
-      map.fitBounds(bounds);
-      if (patrimonios.length === 1) map.setZoom(15);
+
+      if (contemPontosValidos) {
+        map.fitBounds(bounds);
+        if (patrimonios.length === 1) map.setZoom(15);
+      }
     }
   }, [map, patrimonios, isMockMode]);
 
@@ -110,9 +121,7 @@ export default function MapaPatrimonios({
                   </span>
                   <h4>{item.nome}</h4>
                   <p>📍 {item.bairro}</p>
-                  {item.cep && (
-                    <p className="mockup-pin-cep">CEP {item.cep}</p>
-                  )}
+                  {item.cep && <p className="mockup-pin-cep">CEP {item.cep}</p>}
                   <small>Nº {String(item.id).padStart(3, "0")}</small>
                 </div>
               ))

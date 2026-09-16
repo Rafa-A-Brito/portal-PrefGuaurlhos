@@ -14,7 +14,9 @@ export default function Footer() {
           <div className="footer-brand-row">
             <BuildingLibraryIcon width={24} height={24} />
             <div>
-              <strong>Patrimônio Cultural</strong>
+              <strong style={{ color: "var(--paper)" }}>
+                Patrimônio Cultural
+              </strong>
               <span>Prefeitura de Guarulhos</span>
             </div>
           </div>

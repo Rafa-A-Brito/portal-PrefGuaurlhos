@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Bars3Icon,
   XMarkIcon,
   MagnifyingGlassIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
@@ -57,6 +58,16 @@ export default function Navbar() {
         <button className="navbar-search-btn" aria-label="Buscar">
           <MagnifyingGlassIcon width={18} height={18} />
         </button>
+        {/* Acesso administrativo — só a "porta de entrada" visual.
+            A segurança de verdade está em RotaProtegida + backend. */}
+        <Link
+          to="/admin/login"
+          className="navbar-search-btn"
+          aria-label="Área administrativa"
+          title="Área administrativa"
+        >
+          <UserCircleIcon width={20} height={20} />
+        </Link>
         <button
           className="navbar-toggle"
           onClick={() => setMenuAberto((v) => !v)}
