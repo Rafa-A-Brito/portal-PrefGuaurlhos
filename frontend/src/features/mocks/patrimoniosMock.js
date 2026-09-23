@@ -2,7 +2,7 @@ import ESTACAO_IMG from "../../assets/sra_bonsucesso.png";
 import BOSQUE_IMG from "../../assets/bosque_maia.jpg";
 import IGREJA_IMG from "../../assets/festa_bonsucesso.jpg";
 import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
-
+import PARQUE_TIETE from "../../assets/parque_eco_tiete.png";
 /**
  * Catálogo único de patrimônios mockados — fonte de dados compartilhada
  * entre a Home (Destaques) e a página de Patrimônios/Mapa, usada pelo
@@ -69,7 +69,7 @@ export const patrimoniosMock = [
     cep: "07231-000",
     resumo:
       "Área verde às margens do Rio Tietê, importante para o equilíbrio ambiental da região de Cumbica.",
-    imagemPrincipal: BOSQUE_IMG,
+    imagemPrincipal: PARQUE_TIETE,
     localizacao: { lat: -23.4368, lng: -46.4614 },
   },
   {

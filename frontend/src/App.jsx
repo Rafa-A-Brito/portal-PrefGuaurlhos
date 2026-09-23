@@ -8,6 +8,7 @@ import Inicio from "./pages/Inicio/Inicio";
 import Mapa from "./pages/Mapa/Mapa";
 import Patrimonios from "./pages/Patrimonios/Patrimonios";
 import ConhecaMais from "./pages/ConhecaMais/ConhecaMais";
+import PatrimonioDetalhe from "./pages/PatrimonioDetalhe/PatrimonioDetalhe";
 
 import { PatrimoniosProvider } from "./context/PatrimoniosContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -37,6 +38,10 @@ function AppRoutes() {
                   <Route path="/" element={<Inicio />} />
                   <Route path="/mapa" element={<Mapa />} />
                   <Route path="/patrimonios" element={<Patrimonios />} />
+                  <Route
+                    path="/patrimonios/:id"
+                    element={<PatrimonioDetalhe />}
+                  />
                   <Route path="/conheca-mais" element={<ConhecaMais />} />
                 </Routes>
               </div>

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nome": "Administrador",
-      "email": "@guarulhos.sp.goservidorv.br",
+      "email": "admin@guarulhos.sp.gov.servidor.br",
       "senha": "admin123",
       "perfil": "admin"
     },
