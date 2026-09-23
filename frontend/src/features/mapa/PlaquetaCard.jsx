@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPinIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { CATEGORIA_META } from "../categoriaMeta";
 
-import HOSPITAL_IMG from "../../assets/hospital_padre_bento.jpg";
+import SANATORIO_IMG from "../../assets/sanatorio_padre_bento.jpg";
 
 export default function PlaquetaCard({ item }) {
   const meta = CATEGORIA_META[item.categoria];
@@ -18,7 +18,7 @@ export default function PlaquetaCard({ item }) {
           alt={item.nome}
           loading="lazy"
           onError={(e) => {
-            e.currentTarget.src = HOSPITAL_IMG;
+            e.currentTarget.src = SANATORIO_IMG;
           }}
         />
         <span className={`cat-badge cat-${item.categoria}`}>
