@@ -1,5 +1,5 @@
 import CAPELA_BONSUCESSO_IMG from "../../assets/capela_bonsucesso.png";
-import IGREJA_IMG from "../../assets/festa_bonsucesso.jpg";
+import SANATORIO_IMG from "../../assets/sanatorio_padre_bento.jpg";
 import FESTA_BONSUCESSO_IMG from "../../assets/festa_bonsucesso.jpg";
 
 /**
@@ -12,6 +12,6 @@ export const heroDestaqueMock = {
   nome: "Antigo hospital municipal",
   bairro: "Centro, Guarulhos",
   resumo: "Um marco da história e da saúde pública da cidade.",
-  imagens: [FESTA_BONSUCESSO_IMG, CAPELA_BONSUCESSO_IMG, IGREJA_IMG],
+  imagens: [FESTA_BONSUCESSO_IMG, CAPELA_BONSUCESSO_IMG, SANATORIO_IMG],
   extra: 5,
 };

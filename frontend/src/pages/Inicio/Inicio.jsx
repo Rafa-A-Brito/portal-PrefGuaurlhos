@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   MapPinIcon,
   MagnifyingGlassIcon,
+  ChevronLeftIcon,
   ChevronRightIcon,
   HeartIcon,
   ChevronDownIcon,
@@ -41,15 +42,26 @@ export default function Inicio() {
     irParaPatrimonios(termoBusca.trim());
   };
 
-  const rolarDestaques = () => {
+  const rolarDestaques = (direcao = "next") => {
     const track = trackRef.current;
     if (!track) return;
-    const noFinal =
-      track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-    track.scrollTo({
-      left: noFinal ? 0 : track.scrollLeft + CARD_SCROLL_STEP,
-      behavior: "smooth",
-    });
+
+    if (direcao === "prev") {
+      const noInicio = track.scrollLeft <= 0;
+      track.scrollTo({
+        left: noInicio
+          ? track.scrollWidth
+          : track.scrollLeft - CARD_SCROLL_STEP,
+        behavior: "smooth",
+      });
+    } else {
+      const noFinal =
+        track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      track.scrollTo({
+        left: noFinal ? 0 : track.scrollLeft + CARD_SCROLL_STEP,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -198,6 +210,13 @@ export default function Inicio() {
           </div>
         ) : (
           <div className="destaques-carousel">
+            <button
+              className="destaques-arrow"
+              aria-label="Ver mais destaques"
+              onClick={rolarDestaques}
+            >
+              <ChevronLeftIcon width={18} height={18} />
+            </button>
             <div
               className="destaques-track"
               ref={trackRef}
